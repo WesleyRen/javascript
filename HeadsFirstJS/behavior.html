@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Just a Generic Page</title>
+    <script>
+      var testVar = 'TT';
+      setTimeout(wakeUpUser, 2000);
+      function wakeUpUser() {
+        // alert("Are you going to stare at this boring page forever?");
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Just a generic heading</h1>
+    <p>
+        Not a lot to read about here. I'm just an obligatory paragraph living in 
+        an example in a JavaScript book. I'm looking for something to make my life 
+        more exciting.
+    </p>
+    <h1>Doc some looping and write out to the page.</h1>
+    <p>
+      <script>
+        var scoops = 5;
+        while (scoops > 0) {
+          document.write("Another scoop!<br>");
+          scoops--;
+        }
+        document.write("Life without ice cream isn't the same.");
+      </script>
+    </p>
+    <h1>Some more advanced features on functions.</h1>
+      <script>
+        car = {
+          color: "silver",
+          stopped: true,
+          move: function() {
+            if (stopped) {
+              stopped = false;
+              console.log(stopped);
+            } else {
+              alert("zoom zoom!");
+            }
+          }
+        }
+        car.move;
+        console.log(this.stopped);
+        console.log(car.move);
+        document.write("testVar is: " + testVar + "." + "<br>");
+
+        var test11 = 0 / 0;
+        console.log(typeof test11);
+        document.write(typeof test11 + "<br>");
+        
+        if (99 == "99") {
+            document.write("A number equals a string!<br>");
+        } else {
+            document.write("No way a number equals a string<br>");
+        }
+
+        document.write((true === (1 === "1")) + "<br><br>");
+
+        var tick = true;
+        var tickCount = 0;
+        var tickLimit = 10;
+        function ticker() {
+          if (tick) {
+            document.write("Tick<br>");
+            tick = false;
+          }
+          else {
+            document.write("Tock<br>");
+            tick = true;
+          }
+          tickCount++;
+          if (tickCount >= tickLimit) {
+            clearInterval(setIntvId);
+            document.write("I'm done with ticking.<br>");
+          }
+        }
+        // var setIntvId = setInterval(ticker, 300);
+        
+        
+        function addN(n) {
+           var adder = function(x) {
+                          return n + x;
+                       };
+           return adder;
+        }
+        
+        var doIt=addN(5);
+        document.write(doIt(3) + "<br>");
+        
+        
+        var justAVar = "global";
+        function whereAreYou() {
+          var justAVar = "local";
+          function inner() {
+            return justAVar;
+          }
+          return inner;
+        }
+        document.write(whereAreYou() + "<br>");
+        
+        var innerFunction = whereAreYou();
+        var result = innerFunction();
+        document.write(result + "<br>");
+
+        var result = whereAreYou();
+        document.write(result + "<br><br>");
+        
+        //
+        //
+        //
+        function Dog(name, breed, weight) {
+          this.name = name;
+          this.breed = breed;
+          this.weight = weight;
+        }
+        
+        var fido = new Dog("fido", "mixed", 38);
+        var fluffy = new Dog("Fluffy", "Poodle", 30);
+        var spot = new Dog("Spot", "Chihuahua", 10);
+        var dogs = [ fido, fluffy, spot];
+        
+        for (var i = 0, n = dogs.length; i < n; i++) {
+          var size = "small";
+          if (dogs[i].weight > 10) {
+            size = "large";
+          }
+          document.write("Dog: " + dogs[i].name + " is a " + size + " " + dogs[i].breed + "<br>");
+        }
+        
+        // instance:
+        if (fluffy instanceof Dog)
+          document.write("OK, fluffy is a dog.<br>");
+        
+        </script>
+  </body>
+</html>

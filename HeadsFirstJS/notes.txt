@@ -1,0 +1,73 @@
+###################################
+# About functions:
+###################################
+Function declarations are evaluated before the rest of the code is evaluated.
+Function expressions get evaluated later, with the rest of the code.
+A function declaration doesn’t return a reference to a function; 
+   rather it creates a variable with the name of the function and assigns the new function to it.
+A function expression returns a reference to the new function created by the expression.
+The process of invoking a function created by a declaration is exactly the same for one created with an expression.
+You can hold function references in variables.
+
+In other words:
+Function declarations are statements; function expressions are used in statements.
+
+1. Function expression vs. function declaration.
+  var fe = function (tt) {...} # not parsed.
+  function fd(tt) {...} # parsed on page load.
+
+When the browser parses your page—before it evaluates any code—it’s 
+looking for function declarations. When the browser finds one, 
+it creates a function and assigns the resulting reference to a variable with the same name as the function.
+
+1. assign variables.
+2. evaluate functions.
+3. run code.
+
+2. Functions are values, first class values. You can:
+  a. assign a function to a variable.
+  b. pass functions to functions.
+  c. return functions from functions.
+  
+  
+  
+###################################
+# About arrays:
+###################################
+Arrays come with sort method, with optional compare function as a parameter.
+image with no caption
+And of course, to use the compareSold function to sort the products array, we simply call the products array’s sort method:
+
+var numArray = [21, 23, 1, 2];
+numArray.sort(compareNumbers);
+
+function compareNumbers(num1, num2) {
+    if (num1 > num2) {
+        return 1;
+    } else if (num1 === num2) {
+        return 0;
+    } else {
+        return -1;
+    }
+}
+
+function compareNumbers(num1, num2) {
+  return num1 - num2;
+}
+
+###################################
+# Pencil exercise 1:
+###################################
+create a variable named discount and set its value to 10.
+create a variable named total and set its value to be the result of price minus price times discount percentage.
+check if price is greater than 25, it is, run freeShipping() function.
+
+create a variable named count and set its value to 10;
+run juggle() and subtract 1 from count while count is greater than 0
+
+create an object dog with attributes of "name" and "weight", set name to "Rover" and weight to 35.
+if dog's weight is greater than 30 display "WOOF WOOF".
+if dog's weight is not greater than 30 display "woof woof"
+
+create a variable named circleRadius with value of 20.
+create a variable named circleAre with value of PI * (circleRadius squared)

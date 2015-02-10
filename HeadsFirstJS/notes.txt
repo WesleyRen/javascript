@@ -1,4 +1,46 @@
 ###################################
+# Bulletin points
+###################################
+JavaScript’s object system uses prototypal inheritance.
+
+When you create an instance of an object from a constructor, 
+  the instance has its own customized properties and a copy of the methods in the constructor.
+
+If you add properties to a constructor’s prototype, 
+  all instances created from that constructor inherit those properties.
+
+Putting properties in a prototype can reduce runtime code duplication in objects.
+
+To override properties in the prototype, simply add the property to an instance.
+
+A constructor function comes with a default prototype 
+  that you can access with the function’s prototype property.
+
+You can assign your own object to the prototype property of a constructor function.
+
+If you use your own prototype object, make sure you set the constructor 
+  function correctly to the constructor property for consistency.
+
+If you add properties to a prototype after you’ve created instances 
+  that inherit from it, all the instances will immediately inherit the new properties.
+
+Use the hasOwnProperty method on an instance to 
+  find out if a property is defined in the instance.
+
+The method call can be used to invoke a function and 
+  specify the object to be used as this in the body of the function.
+
+Object is the object that all prototypes and instances ultimately inherit from.
+
+Object has properties and methods that all objects inherit, like toString and hasOwnProperty.
+
+You can override or add properties to builtin objects like Object and String, 
+  but take care when doing so as your changes can have far-ranging effects.
+
+In JavaScript, almost everything is an object, 
+  including functions, arrays, many built-in objects, and all the custom objects you make yourself.
+
+###################################
 # About functions:
 ###################################
 Function declarations are evaluated before the rest of the code is evaluated.
@@ -20,17 +62,29 @@ When the browser parses your page—before it evaluates any code—it’s
 looking for function declarations. When the browser finds one, 
 it creates a function and assigns the resulting reference to a variable with the same name as the function.
 
-1. assign variables.
-2. evaluate functions.
-3. run code.
+  1. assign variables.
+  2. evaluate functions.
+  3. run code.
 
 2. Functions are values, first class values. You can:
   a. assign a function to a variable.
   b. pass functions to functions.
   c. return functions from functions.
   
+3. call vs. apply:
+  Pretty much the same: apply comes in - the second argument needs to be an array, 
+      which is unpacked into arguments that are passed to the called function. 
   
-  
+###################################
+# About Prototype:
+###################################
+1. Not only to reuse the code, but to occupy single block of memory.
+2. Here’s the key: 
+      the first time we get the value of sitting, we’re getting it from the prototype. 
+      But then when we set sitting to true, that happens in the object instance, not the prototype.
+    To check:
+      .hasOwnProperty("...");
+
 ###################################
 # About arrays:
 ###################################

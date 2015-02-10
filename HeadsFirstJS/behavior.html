@@ -135,6 +135,79 @@
         if (fluffy instanceof Dog)
           document.write("OK, fluffy is a dog.<br>");
         
+        // independent properties:
+        fido.owner = "Bob";
+        delete fido.weight;
+        fido.trust = function(person) {
+          return (person === "Bob");
+        };
+        var notBite = fido.trust("Bob");
+        document.write("notBite is " + notBite + ".<br><br>");
+        
+        /****************************        
+        // prototype:
+        *****************************/
+        function Dog(name, breed, weight) {
+          this.name = name;
+          this.breed = breed;
+          this.weight = weight;
+        }
+        
+        Dog.prototype.species = "Canine";
+        
+        Dog.prototype.bark = function() {
+          if (this.weight > 25) {
+            document.write(this.name + " says Woof!<br>");
+          } else {
+            document.write(this.name + " says Yip!<br>");            
+          }
+        }
+        
+        Dog.prototype.run = function() {
+            document.write(this.name + " Run!<br>");
+        }
+        Dog.prototype.wag = function() {
+            document.write(this.name + " Wag!<br>");
+        }
+
+        /*
+        function ShowDog(name, breed, weight, handler) {
+          this.name = name;
+          this.breed = breed;
+          this.weight = weight;
+          this.handler = handler;
+        }
+        */
+        // right way to do it:
+        function ShowDog(name, breed, weight, handler) {
+          Dog.call(this, name, breed, weight);
+          this.handler = handler;
+        }
+       
+        
+        //
+        // ShowDog inherits Dog constructor.
+        ShowDog.prototype = new Dog();
+        ShowDog.prototype.league = "Webville";
+        ShowDog.prototype.stack = function () { document.write("Stack<br>");}
+        ShowDog.prototype.bait = function () { document.write("Bait<br>");}
+        ShowDog.prototype.gait = function (kind) { document.write(kind + "ing<br>");}
+        ShowDog.prototype.groom = function () { document.write("Groom<br>");}
+        
+        var scotty = new ShowDog("Scotty", "Scottish Terrier", 15, "Cookie");
+        scotty.stack();
+        scotty.bark();
+        document.write(scotty.league + "<br>");
+        document.write(scotty.species + "<br><br>");
+        
+        // note: at this point we haven't setup a constructor for ShowDog yet.
+        if (scotty instanceof Dog) console.log("Scotty is a Dog");
+        if (scotty instanceof ShowDog) console.log("Scotty is a ShowDog");
+        console.log("scotty constructor is :" + scotty.constructor);
+        
+        // here's how we define ShowDog constructor:
+        ShowDog.prototype.constructor = ShowDog;
+        console.log("scotty constructor is :" + scotty.constructor);
         </script>
   </body>
 </html>

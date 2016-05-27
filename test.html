@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+
+<body>
+ 
+<script>
+  var isoDate = new Date('2016-07-28 16:10:00 (PST)').toISOString();
+  console.log("iso date: " + isoDate);
+
+  var isoDate = new Date('2016-07-28 16:10:00 (PST)')
+  console.log("iso date: " + isoDate.getTimezoneOffset());
+
+  var offset = new Date().getTimezoneOffset();
+  console.log(offset);
+
+// current tz.
+  var split = new Date().toString().split(" ");
+  var timeZoneFormatted = split[split.length - 2] + " " + split[split.length - 1];
+  console.log(timeZoneFormatted);
+
+// javascript only takes timezone, and figures out daylight saving by datetime value.
+  var isoDate = new Date('2016-07-28 16:10:00 (PST)')
+  var split = isoDate.toString().split(" ");
+  var timeZoneFormatted = split[split.length - 2] + " " + split[split.length - 1];
+  console.log(isoDate.toString());
+  console.log(timeZoneFormatted);
+
+function getTz(dtm) {
+  // get timezone string from Date object in string: Thu Jan 28 2016 16:02:28 GMT-0800 (PST)
+  return dtm.toString().split(" ")[6];
+}
+
+</script>
+</body>
+</html>

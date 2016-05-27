@@ -40,6 +40,8 @@ You can override or add properties to builtin objects like Object and String,
 In JavaScript, almost everything is an object, 
   including functions, arrays, many built-in objects, and all the custom objects you make yourself.
 
+The delete operator can be used to remove a property from an object
+
 ###################################
 # About functions:
 ###################################
@@ -125,3 +127,92 @@ if dog's weight is not greater than 30 display "woof woof"
 
 create a variable named circleRadius with value of 20.
 create a variable named circleAre with value of PI * (circleRadius squared)
+
+
+
+###################################
+# Good practice:
+###################################
+///////////////////////////////
+3.9. Global Abatement
+
+JavaScript makes it easy to define global variables that can hold all of the assets of your application. Unfortunately, global variables weaken the resiliency of programs and should be avoided.
+
+One way to minimize the use of global variables is to create a single global variable for your application:
+
+var MYAPP = {};
+
+That variable then becomes the container for your application:
+
+MYAPP.stooge = {
+    "first-name": "Joe",
+    "last-name": "Howard"
+};
+
+MYAPP.flight = {
+    airline: "Oceanic",
+    number: 815,
+    departure: {
+        IATA: "SYD",
+        time: "2004-09-22 14:55",
+        city: "Sydney"
+    },
+    arrival: {
+        IATA: "LAX",
+        time: "2004-09-23 10:42",
+        city: "Los Angeles"
+    }
+};
+
+By reducing your global footprint to a single name, you significantly reduce the chance of bad interactions with other applications, widgets, or libraries. Your program also becomes easier to read because it is obvious that MYAPP.stooge refers to a top-level structure. In the next chapter, we will see ways to use closure for information hiding, which is another effective global abatement technique.
+
+
+///////////////////////////////
+4.6. Exceptions
+
+JavaScript provides an exception handling mechanism. Exceptions are unusual (but not completely unexpected) mishaps that interfere with the normal flow of a program. When such a mishap is detected, your program should throw an exception:
+
+var add = function (a, b) {
+    if (typeof a !== 'number' || typeof b !== 'number') {
+        throw {
+            name: 'TypeError',
+            message: 'add needs numbers'
+        };
+    }
+    return a + b;
+}
+
+The throw statement interrupts execution of the function. It should be given an exception object containing a name property that identifies the type of the exception, and a descriptive message property. You can also add other properties.
+
+The exception object will be delivered to the catch clause of a try statement:
+
+// Make a try_it function that calls the new add
+// function incorrectly.
+
+var try_it = function (  ) {
+    try {
+        add("seven");
+    } catch (e) {
+        document.writeln(e.name + ': ' + e.message);
+    }
+}
+
+try_it(  );
+
+///////////////////////////////
+
+
+
+///////////////////////////////
+
+
+
+///////////////////////////////
+
+
+
+///////////////////////////////
+
+
+
+///////////////////////////////

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+</head>
+<body>
+
+<button onclick="getData()">Get foo</button>
+
+<table data-role="table" id="table_1">
+    <thead>
+    <tr class="ui-bar-d" id="thead_1">
+        <th>Id</th>
+        <th>Name</th></tr>
+    </thead>
+    <tbody id="tbody_1">
+    </tbody>
+</table>
+
+<script>
+
+    globalVars = {
+        queryUrlPrefix: "http://dbtools.dbevolver-ui.prod.walmart.com/db/query?level=none&pretty&timings&"
+    };
+
+    function getData() {
+        var queryText = "q=SELECT id, name FROM foo";
+        var url = globalVars.queryUrlPrefix + queryText;
+        $.get(url, dataProcess);
+    }
+
+    function dataProcess(data) {
+        var columns = data.results[0].columns;
+
+        var $table = $('table.demo');
+        $table.floatThead({
+            responsiveContainer: function($table){
+                return $table.closest('.table-responsive');
+            }
+        });
+
+        var newTr = null;
+        var resetTr = true;
+        $.each(list, function(index, list) {
+            list[2]===null||list[2]===undefined||list[2]===''||isNaN(list[2])?tempWeight='':tempWeight=list[2].toFixed(2);
+            if (!newTr) {
+                // create new row
+                newTr = $('<tr>');
+                // do not reset it this time
+                resetTr = false;
+            } else {
+                // we used the previous one so reset it this time
+                resetTr = true;
+            }
+            newTr.appendTo($table)
+                .append($('<td>').text(list[1]))
+                .append($("<td><input type='text' name='txtCharge[]' value='"+tempWeight+"' onkeypress='return isNumberKey(event, this.value);'>"));
+
+            if (resetTr) {
+                // reset
+                newTr = null;
+            }
+        });
+    }
+</script>
+</body>
+</html>

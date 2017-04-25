@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=10; IE=9; IE=8; IE=7; IE=EDGE" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+</head>
+<body>
+
+<button onclick="crtTable()">Create table foo</button>
+<button onclick="insertData()">Insert into foo</button>
+<button onclick="getData()">Get data from foo</button>
+
+<table data-role="table" id="table_1">
+    <thead>
+    <tr class="ui-bar-d" id="thead_1">
+        <th>Id</th>
+        <th>Name</th></tr>
+    </thead>
+    <tbody id="tbody_1">
+    </tbody>
+</table>
+
+<script>
+    rqliteUrl = "http://dbtools.dbevolver-ui.prod.walmart.com",
+    // rqliteUrl = "http://192.168.200.10:4001",
+
+    globalVars = {
+        execUrlPrefix: rqliteUrl + "/db/execute?pretty&timings",
+        queryUrlPrefix: rqliteUrl + "/db/query?level=none&pretty&timings&"
+    };
+
+    function crtTable() {
+        var crtText = '["CREATE TABLE foo (id integer not null primary key, name text)"]';
+        var url = globalVars.execUrlPrefix;
+        console.log("create crtText: " + crtText);
+        console.log("create url: " + url);
+        $.ajax({
+            type: 'XPOST',
+            url: url,
+            processData: false,
+            data: '["CREATE TABLE foo (id integer not null primary key, name text)"]',
+            success: function(data) { alert('data: ' + data); },
+            contentType: "application/json",
+            dataType: 'json'
+        });
+    }
+
+    function insertData() {
+        var insertText =  "[INSERT INTO foo(name) VALUES(\"fiona\")]";
+        var url = globalVars.execUrlPrefix;
+        console.log("insert url: " + url);
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: JSON.stringify(insertText),
+            success: function(data) { alert('data: ' + data); },
+            contentType: "application/json",
+            dataType: 'json'
+        });
+    }
+
+    function getData() {
+        var queryText = "q=SELECT id, name FROM foo";
+        var url = globalVars.queryUrlPrefix + queryText;
+        $.get(url, dataProcess);
+    }
+
+    function dataProcess(data) {
+        alert(data.results[0].columns[0]);
+    }
+</script>
+</body>
+</html>

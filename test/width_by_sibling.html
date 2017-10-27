@@ -1,0 +1,81 @@
+<html>
+<body>
+
+<ul>
+  <li> li 1 </li>
+</ul>
+
+<ul>
+  <li> li 1 </li>
+  <li> li 2 </li>
+</ul>
+
+<ul>
+  <li> li 1 </li>
+  <li> li 2 </li>
+  <li> li 3 </li>
+</ul>
+
+<ul>
+  <li> li 1 </li>
+  <li> li 2 </li>
+  <li> li 3 </li>
+  <li> li 4 </li>
+</ul>
+<style>
+/* 
+https://www.w3.org/TR/selectors/#general-sibling-combinators
+*/
+
+* {
+  font-family: sans-serif;
+  box-sizing: border-box;
+}
+
+ul {
+  padding: 0;
+}
+
+li {
+  float: left;
+  text-align: center;
+  color: #fff;
+  font-weight: bold;
+  background-color: mediumaquamarine;
+  list-style: none;
+  border: 2px solid #fff;
+  padding: 8px;
+}
+
+/* one item */
+li:first-child:nth-last-child(1) {
+  width: 100%;
+}
+
+/* two items */
+li:first-child:nth-last-child(2),
+li:first-child:nth-last-child(2) ~ li {
+  width: 50%;
+}
+
+/* three items */
+li:first-child:nth-last-child(3),
+li:first-child:nth-last-child(3) ~ li {
+  width: 33.3333%;
+}
+
+/* four items */
+li:first-child:nth-last-child(4),
+li:first-child:nth-last-child(4) ~ li {
+  width: 25%;
+}
+
+/* five items */
+li:first-child:nth-last-child(5),
+li:first-child:nth-last-child(5) ~ li {
+  width: 20%;
+}
+</style>
+
+</body>
+</html>

@@ -1,4 +1,5 @@
 /*
+From LeetCode.com
 Given a function fn, return a curried version of that function.
 
 A curried function is a function that accepts fewer or an equal number of parameters as the original function and returns either another curried function or the same value the original function would have returned.
@@ -20,12 +21,12 @@ var curry = function(fn) {
 };
 
 function sum(a, b) { return a + b; }
-const csum = curry(sum);
-csum(1)(2) // 3
-
+const curriedSum = curry(sum);
+let curryText = "Curry can be done in two ways, wrapped in a function, or Function.prototype.\n" + "curry 1: " + curriedSum(1)(2) // 3
 
 
  /**
+ From the book.
  We can also add curry to Function prototype, as
  */
 
@@ -42,4 +43,5 @@ csum(1)(2) // 3
 
  // Now we can have this
  let add1 = add.curry(1);
- document.getElementById("curry").innerHTML = add1(6);
+ curryText = curryText + "\n"+ "curry 2: " + add1(6);
+ document.getElementById("curry").innerHTML = curryText;
